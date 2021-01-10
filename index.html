@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head lang="zh">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>US Election Visualization</title>
+    <script src="./js/d3.v5.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="./js/uStates.js"></script> <!-- Render the US states map and some mouse events of the map -->
+    <script src="./js/data.js"></script> <!-- Some function for data processing. -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-slider.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+
+    <h1 class="display-3 text pb-5 ml-5 pl-5" id="first_title"> US Election Visualization </h1>
+    <div class="alert alert-primary col-sm-4" id="first_alert" role="alert">
+        <p class="lead text-lg-left " id="time_title">     Current time: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  2020.11.04 &nbsp; &nbsp; &nbsp; 13:28 </p>
+        <p id="rendering_num"> Now rendering 1/3406 data </p>
+    </div>
+
+
+    <div id="tooltip"></div><!-- div to hold tooltip. -->
+    <svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
+
+    <script src="./js/main.js"></script>
+
+</body>
