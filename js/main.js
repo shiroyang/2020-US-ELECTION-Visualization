@@ -5,7 +5,7 @@ let state_id = ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA"
     "WI", "MO", "AR", "OK", "KS", "LA", "VA"]
 
 let iter = 0; // 用来记录总共渲染的次数，来实现暂停操作
-let my_loop; // 用来控制 setInterval 函数，控制循环次数
+let my_loop = null; // 用来控制 setInterval 函数，控制循环次数
 let my_data = null; // 用来读取pre_processed_data.csv的所有记录
 let sampleData ={}; // 当次迭代渲染时用到的数据
 
@@ -56,7 +56,15 @@ function draw() {
     let current_time = my_data[iter]['ddtt'];
     let clock_time = "Current time:           " + current_time.slice(0,4) + "." + current_time.slice(4,6) + "." + current_time.slice(6, 8) + "       " + current_time.slice(8, 10) + ":" + current_time.slice(10, 12);
     $('#time_title').text(clock_time.replaceAll(" ", '\xA0')); //这里需要把空格转换成16进制的160，代表空格
-
+    //刷新词云
+    let filename = current_time.slice(0, 4) + "-" + current_time.slice(4, 6) + "-" + current_time.slice(6, 8);
+    d3.select("#wordcloud").attr("src", "wordclouds/" + filename + ".png");
+    //刷新评论
+    $.getJSON("comment.json", function (result)
+    {
+        comment = result[filename];
+        $("#comments").text(comment);
+    })
     // 2.渲染地图的颜色
     let text = "Now rendering " + (iter+2).toString() + "/3406 data";
     $('#rendering_num').text(text);
@@ -126,7 +134,10 @@ function draw() {
     uStates.draw("#statesvg", sampleData, tooltipHtml);
 
     d3.select(self.frameElement).style("height", "600px");
-
+    /*进度条刷新*/
+    let scale = d3.scaleLinear().domain([0, 3406]).range([0, 100]);
+    let progress = $("#progress1");
+    progress.val(scale(iter));
     /*********************************** 这部分用来控制循环次数  *********************************************/
     iter += 1; //全局变量用来控制迭代次数
     if (iter > 3405) {
@@ -141,17 +152,34 @@ function draw() {
     state_clean, trump_win_rate_list, ddtt, leading_candidate_name, trailing_candidate_name, leading_candidate_votes, trailing_candidate_votes, vote_differential
 */
 
-
 function main(){
     d3.csv(data_file).then(function (DATA){
         my_data = DATA;
         // console.log(my_data.length)
         map_init();
-        my_loop = setInterval(function () {
-            draw()
-        }, 100);
-
+        $("#start").click(function () {
+            if (my_loop != null) {
+                clearInterval(my_loop);
+            }
+            my_loop = setInterval(function () {
+                draw()
+            }, 50);
+        })
+        $("#stop").click(function () {
+            if (my_loop != null) {
+                clearInterval(my_loop);
+            }
+        })
+        $("#reset").click(function () {
+            clearInterval(my_loop);
+            map_init();
+            iter = 0;
+            my_loop = setInterval(function () {
+                draw()
+            }, 50);
+        })
     })
 }
+
 
 main()

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <head lang="zh">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,6 +7,8 @@
     <script src="js/jquery.min.js"></script>
     <script src="./js/uStates.js"></script> <!-- Render the US states map and some mouse events of the map -->
     <script src="./js/data.js"></script> <!-- Some function for data processing. -->
+    <script src="./js/bootstrap-slider.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/bootstrap-slider.css">
     <link rel="stylesheet" href="./css/index.css">
@@ -14,10 +16,30 @@
 
 <body>
 
+    
     <h1 class="display-3 text pb-5 ml-5 pl-5" id="first_title"> US Election Visualization </h1>
-    <div class="alert alert-primary col-sm-4" id="first_alert" role="alert">
-        <p class="lead text-lg-left " id="time_title">     Current time: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  2020.11.04 &nbsp; &nbsp; &nbsp; 13:28 </p>
-        <p id="rendering_num"> Now rendering 1/3406 data </p>
+    <div class="right-container">
+        <div class="alert alert-succeess col-mid-6" id="first_alert" role="alert">
+            <p class="lead text-lg-left " id="time_title">     Current time: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  2020.11.04 &nbsp; &nbsp; &nbsp; 13:28 </p>
+            <p id="rendering_num"> Now rendering 1/3406 data </p>
+        </div>
+
+    </div>
+
+    <div id="progress">
+        <progress value="0" max="100" id="progress1"></progress>
+        <br>
+        <button id="start">start</button>
+        <button id="stop">stop</button>
+        <button id="reset">reset</button>
+    </div>
+
+    <div class="wordcloud" id="wcdiv">
+        <img class="wordcloud" id="wordcloud" src="wordclouds/2020-11-04.png" />
+    </div>
+
+    <div class="comments">
+        <p id="comments">Comments</p>
     </div>
 
 

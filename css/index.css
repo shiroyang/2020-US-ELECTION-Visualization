@@ -6,10 +6,12 @@
 .state:hover{
     fill-opacity:0.5;
 }
+
 #first_alert{
     position: absolute;
-    top: 15px;
-    left: 920px;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
 }
 #tooltip {
     position: absolute;
@@ -54,3 +56,61 @@
 #time_title{
     font-weight: normal;
 }
+
+img {
+    position: absolute;
+    left: 1000px;
+    top: 100px;
+    width: 850px;
+    z-index: 0; 
+}
+
+#progress {
+    position: absolute;
+    top:850px;
+    left: 35px;
+    width:800px;
+    height:500px;
+    z-index:90;
+}
+#progress1{
+    width:100%;
+    height:50px;
+}
+#start{
+    width:30%;
+}
+#stop {
+    width: 30%;
+}
+#reset{
+    width: 30%;
+}
+
+.comments {
+    position: absolute;
+    left: 990px;
+    top: 720px;
+    width: 850px;
+    height: 270px;
+    text-align: left;
+    padding: 20px;
+    margin: 10px;
+    font: 23px sans-serif;
+    background-image: linear-gradient(to bottom right, #ffc3a0, #ffafbd);
+    border: 1px;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.right-container{
+    position: absolute;
+    left: 1000px;
+    top: 0px;
+    width: 850px;
+    height: 1000px;
+    background-image: linear-gradient(to bottom right, #B7F8DB, #50A7C2);
+    z-index: 0;
+}
+
